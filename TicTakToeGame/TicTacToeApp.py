@@ -2,6 +2,9 @@
 # Закончено ! Работает !
 
 
+import sys
+
+
 player1 = "X"
 player2 = "O"
 playerMove = True
@@ -20,9 +23,19 @@ def create_board_numbers():
 
 
 def pr_matrix(matrix):
-    for row in matrix:
+    for row in matrix:   
         print(*row)
-
+# def pr_matrix(matrix):
+#     lst = []
+#     str = """
+#     {} | {} | {}
+#     {} | {} | {}
+#     {} | {} | {}\r""".format(*matrix[0], *matrix[1], *matrix[2])
+#     for row in matrix:
+#         for col in row:
+#             lst.append(col)
+#             #print(col, end="")
+#     print(str + '\r')
 
 board = create_board()
 board_numbers = create_board_numbers()
