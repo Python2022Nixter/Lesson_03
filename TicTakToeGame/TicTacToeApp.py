@@ -2,15 +2,16 @@
 # Закончено ! Работает !
 
 
-player1 = "X"
-player2 = "O"
-playerMove = True
+PLAYER1 = "X"
+PLAYER2 = "O"
+PLAYER_MOVE = True
+SPACER = "."
 
 
 def create_board():
     board = []
     for i in range(3):
-        board.append(["."] * 3)
+        board.append([SPACER] * 3)
     return board
 
 
@@ -20,7 +21,7 @@ def create_board_numbers():
 
 
 def pr_matrix(matrix):
-    for row in matrix:   
+    for row in matrix:
         print(*row)
 # def pr_matrix(matrix):
 #     lst = []
@@ -34,6 +35,7 @@ def pr_matrix(matrix):
 #             #print(col, end="")
 #     print(str + '\r')
 
+
 board = create_board()
 board_numbers = create_board_numbers()
 print("Game Board:")
@@ -46,11 +48,9 @@ def check_empty_cells(board):
     '''
     for i in range(3):
         for j in range(3):
-            if board[i][j] == ".":
+            if board[i][j] == SPACER:
                 return True
     return False
-
-
 
 
 def get_cell_index(cell_number):
@@ -63,7 +63,6 @@ def get_cell_index(cell_number):
                 return i, j
 
 
-
 def set_cell_value(cell_number, value):
     '''
     Установка Х или О в ячейку
@@ -72,16 +71,15 @@ def set_cell_value(cell_number, value):
     i, j = cell_number
     board[i][j] = value
 
-# Проверить пустая ли ячейка
-def check_cell_empty(cell_number):
+
+def check_cell_is_not_occupied(cell_number):
     i, j = cell_number
-    if board[i][j] == ".":
+    if board[i][j] == SPACER:
         return True
     else:
         return False
 
 
-# Проверить выиграл ли кто-то
 def check_winner(board, player):
     '''
     Проверка выиграл ли кто-то
@@ -103,27 +101,27 @@ while check_empty_cells(board):
     '''
     Game loop
     '''
-    if playerMove:
-        playerMove = False
+    if PLAYER_MOVE:
         print("Player 1 move:")
         i = int(input("Enter number of cell: "))
         cell_path = get_cell_index(i)
-        if check_cell_empty(cell_path):
-            set_cell_value(cell_path, player1)
-        if check_winner(board, player1):
+        if check_cell_is_not_occupied(cell_path):
+            set_cell_value(cell_path, PLAYER1)
+        if check_winner(board, PLAYER1):
             print("Player 1 win!")
             pr_matrix(board)
             break
         pr_matrix(board)
+        PLAYER_MOVE = False
     else:
-        playerMove = True
         print("Player 2 move:")
         i = int(input("Enter number of cell: "))
         cell_path = get_cell_index(i)
-        if check_cell_empty(cell_path):
-            set_cell_value(cell_path, player2)
-        if check_winner(board, player2):
+        if check_cell_is_not_occupied(cell_path):
+            set_cell_value(cell_path, PLAYER2)
+        if check_winner(board, PLAYER2):
             print("Player 2 win!")
             pr_matrix(board)
             break
         pr_matrix(board)
+        PLAYER_MOVE = True
