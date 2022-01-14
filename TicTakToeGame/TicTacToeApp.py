@@ -2,9 +2,6 @@
 # Закончено ! Работает !
 
 
-import sys
-
-
 player1 = "X"
 player2 = "O"
 playerMove = True
@@ -13,7 +10,7 @@ playerMove = True
 def create_board():
     board = []
     for i in range(3):
-        board.append([" "] * 3)
+        board.append(["."] * 3)
     return board
 
 
@@ -49,7 +46,7 @@ def check_empty_cells(board):
     '''
     for i in range(3):
         for j in range(3):
-            if board[i][j] == " ":
+            if board[i][j] == ".":
                 return True
     return False
 
@@ -78,7 +75,7 @@ def set_cell_value(cell_number, value):
 # Проверить пустая ли ячейка
 def check_cell_empty(cell_number):
     i, j = cell_number
-    if board[i][j] == " ":
+    if board[i][j] == ".":
         return True
     else:
         return False
